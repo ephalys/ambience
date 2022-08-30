@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
-import Controls from '@/components/controls'
 import { IoReload, IoCopy } from 'react-icons/io5'
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {
@@ -13,7 +12,7 @@ const Button = ({ children, text, id }) => {
     return (
         <>
             <button
-                className="text-black transition duration-300 rounded-full p-1 hover:text-gray-700 hover:translate-y-[-5px]"
+                className="text-black transition duration-300 rounded-full p-1 hover:text-gray-700 sm:hover:translate-y-[-5px]"
                 data-tip
                 data-for={id}
                 onMouseEnter={() => showTooltip(true)}
@@ -40,15 +39,28 @@ const Button = ({ children, text, id }) => {
 }
 
 const Actions = () => {
+    const buttons = [
+        {
+            id: 'generate',
+            text: 'Generate new gradient',
+            icon: <IoReload size={28} />,
+        },
+        {
+            id: 'copy',
+            text: 'Copy to clipboard',
+            icon: <IoCopy size={28} />,
+        },
+    ]
+
     return (
         <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
             <div className="flex justify-center gap-12">
-                <Button text="Generate new gradient" id="generate">
-                    <IoReload size={28} />
-                </Button>
-                <Button text="Copy to clipboard" id="copy">
-                    <IoCopy size={28} />
-                </Button>
+                {buttons &&
+                    buttons.map((item) => (
+                        <Button text={item.text} id={item.id} key={item.id}>
+                            {item.icon}
+                        </Button>
+                    ))}
             </div>
         </div>
     )

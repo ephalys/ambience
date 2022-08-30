@@ -17,7 +17,7 @@ const Credits = () => {
                     quality={100}
                     alt="Léon Tran-Van"
                 />
-                <span className="ml-1">Léon Tran-Van</span>
+                <span className="font-bold ml-1">Léon Tran-Van</span>
             </a>
         </div>
     )
