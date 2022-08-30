@@ -1,39 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import dynamic from 'next/dynamic'
 import { IoReload, IoCopy } from 'react-icons/io5'
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), {
+const ReactTooltip = dynamic(() => import('@huner2/react-tooltip'), {
     ssr: false,
 })
 
 const Button = ({ children, text, id }) => {
-    const [tooltip, showTooltip] = useState(true)
-
     return (
         <>
             <button
                 className="text-black transition duration-300 rounded-full p-1 hover:text-gray-700 sm:hover:translate-y-[-5px]"
                 data-tip
                 data-for={id}
-                onMouseEnter={() => showTooltip(true)}
-                onMouseLeave={() => {
-                    showTooltip(false)
-                    setTimeout(() => showTooltip(true), 50)
-                }}
             >
                 {children}
             </button>
-            {tooltip && (
-                <ReactTooltip
-                    place="top"
-                    type="dark"
-                    id={id}
-                    effect="solid"
-                    delayShow={500}
-                >
-                    {text}
-                </ReactTooltip>
-            )}
+            <ReactTooltip
+                place="top"
+                type="dark"
+                id={id}
+                effect="solid"
+                delayShow={500}
+            >
+                {text}
+            </ReactTooltip>
         </>
     )
 }

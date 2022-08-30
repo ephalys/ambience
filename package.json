@@ -10,13 +10,13 @@
     },
     "dependencies": {
         "@fontsource/righteous": "^4.5.7",
+        "@huner2/react-tooltip": "^4.2.22",
         "next": "12.2.5",
         "react": "18.2.0",
         "react-device-detect": "^2.2.2",
         "react-div-100vh": "^0.7.0",
         "react-dom": "18.2.0",
-        "react-icons": "^4.4.0",
-        "react-tooltip": "^4.2.21"
+        "react-icons": "^4.4.0"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.8",
