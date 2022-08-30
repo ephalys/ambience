@@ -1,31 +1,24 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
 import { IoReload, IoCopy } from 'react-icons/io5'
+import * as Tooltip from '@radix-ui/react-tooltip'
 
-const ReactTooltip = dynamic(() => import('@huner2/react-tooltip'), {
-    ssr: false,
-})
-
-const Button = ({ children, text, id }) => {
+const Button = ({ children, text }) => {
     return (
-        <>
-            <button
-                className="text-black transition duration-300 rounded-full p-1 hover:text-gray-700 sm:hover:translate-y-[-5px]"
-                data-tip
-                data-for={id}
-            >
-                {children}
-            </button>
-            <ReactTooltip
-                place="top"
-                type="dark"
-                id={id}
-                effect="solid"
-                delayShow={500}
-            >
+        <Tooltip.Root delayDuration={800}>
+            <Tooltip.Trigger asChild>
+                <button
+                    className="text-black transition duration-300 rounded-full p-1 pt-2 hover:text-gray-700"
+                    data-tip={text}
+                    data-for="tooltip"
+                >
+                    {children}
+                </button>
+            </Tooltip.Trigger>
+            <Tooltip.Content className="bg-black text-white rounded-lg py-1 px-3 shadow-lg backdrop-blur-sm">
                 {text}
-            </ReactTooltip>
-        </>
+                <Tooltip.Arrow />
+            </Tooltip.Content>
+        </Tooltip.Root>
     )
 }
 
@@ -48,7 +41,7 @@ const Actions = () => {
             <div className="flex justify-center gap-12">
                 {buttons &&
                     buttons.map((item) => (
-                        <Button text={item.text} id={item.id} key={item.id}>
+                        <Button id={item.id} key={item.id} text={item.text}>
                             {item.icon}
                         </Button>
                     ))}

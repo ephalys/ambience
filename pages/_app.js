@@ -1,10 +1,11 @@
 import Head from 'next/head'
+import * as Tooltip from '@radix-ui/react-tooltip'
 import '@fontsource/righteous/400.css' // Weight 500.
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
     return (
-        <>
+        <Tooltip.Provider skipDelayDuration={0}>
             <Head>
                 <meta charSet="utf-8" />
                 <meta
@@ -19,7 +20,7 @@ function MyApp({ Component, pageProps }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Component {...pageProps} />
-        </>
+        </Tooltip.Provider>
     )
 }
 
