@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Buttons from '@/components/buttons'
+import ButtonsContainer from '@/components/buttonsContainer'
 import Controls from '@/components/controls'
 import Credits from '@/components/credits'
 import Div100vh from 'react-div-100vh'
@@ -19,7 +19,7 @@ export default function Home() {
                     <h1 className="absolute top-4 inset-x-0 text-h1 font-title text-center">
                         Ambience
                     </h1>
-                    <Buttons />
+                    <ButtonsContainer />
                     {!isMobile && <Controls />}
                     <Credits />
                 </Div100vh>
