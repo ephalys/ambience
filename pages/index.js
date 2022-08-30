@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Ambient</title>
+                <title>Ambience</title>
                 <meta name="description" content="Gradients generator" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
@@ -17,7 +17,7 @@ export default function Home() {
             <main>
                 <Div100vh>
                     <h1 className="absolute top-4 inset-x-0 text-h1 font-title text-center">
-                        Ambient
+                        Ambience
                     </h1>
                     <Buttons />
                     {!isMobile && <Controls />}
