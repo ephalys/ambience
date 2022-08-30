@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Credits = () => {
     return (
-        <div className="absolute inset-x-0 bottom-4 flex justify-center text-sm text-gray-700">
+        <div className="absolute inset-x-0 bottom-4 flex justify-center sm:text-xs text-gray-700">
             Crafted by
             <a
                 href="https://www.tranvanleon.com"
@@ -17,7 +17,7 @@ const Credits = () => {
                     quality={100}
                     alt="Léon Tran-Van"
                 />
-                <span className="font-bold ml-1">Léon Tran-Van</span>
+                <span className="font-semibold ml-1">Léon Tran-Van</span>
             </a>
         </div>
     )

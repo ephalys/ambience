@@ -14,7 +14,7 @@ const Button = ({ children, text }) => {
                     {children}
                 </button>
             </Tooltip.Trigger>
-            <Tooltip.Content className="bg-black text-white rounded-lg py-1 px-3 shadow-lg backdrop-blur-sm">
+            <Tooltip.Content className="bg-black text-white text-sm rounded-lg py-1 px-3 shadow-lg backdrop-blur-sm">
                 {text}
                 <Tooltip.Arrow />
             </Tooltip.Content>
