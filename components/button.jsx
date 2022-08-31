@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 
-const Button = ({ children, text }) => {
+const Button = ({ children, text, action, ...rest }) => {
     return (
         <Tooltip.Root delayDuration={800}>
             <Tooltip.Trigger asChild>
@@ -9,6 +9,7 @@ const Button = ({ children, text }) => {
                     className="text-black transition duration-300 rounded-full p-1 pt-2 hover:text-gray-700"
                     data-tip={text}
                     data-for="tooltip"
+                    {...rest}
                 >
                     {children}
                 </button>
