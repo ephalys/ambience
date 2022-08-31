@@ -1,14 +1,21 @@
 import Head from 'next/head'
-import ButtonsContainer from '@/components/buttonsContainer'
-import Controls from '@/components/controls'
-import Credits from '@/components/credits'
 import Div100vh from 'react-div-100vh'
 import { isMobile } from 'react-device-detect'
 import { useContext } from 'react'
-import { BackgroundsContext } from 'contexts/backgrounds'
+import ButtonsContainer from '@/components/buttonsContainer'
+import Controls from '@/components/controls'
+import Credits from '@/components/credits'
+import { BackgroundsContext } from '@/contexts/backgrounds'
+import generateCSSGradient from '@/utils/generateCSSGradient'
+import { getLastItemArray } from '@/utils/getLastItemArray'
 
 function Home() {
-    const { backgrounds } = useContext(BackgroundsContext)
+    const {
+        backgroundsState: { backgrounds },
+    } = useContext(BackgroundsContext)
+    const mainGradientStyle = {
+        background: generateCSSGradient(getLastItemArray(backgrounds)),
+    }
 
     return (
         <>
@@ -20,11 +27,7 @@ function Home() {
 
             <main
                 className="relative overflow-x-hidden"
-                style={{
-                    background: `linear-gradient(45deg, ${backgrounds.map(
-                        (background) => `${background}`
-                    )})`,
-                }}
+                style={mainGradientStyle}
             >
                 <Div100vh>
                     <h1 className="absolute top-4 inset-x-0 text-h1 font-title text-center">

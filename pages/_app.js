@@ -1,16 +1,12 @@
 import Head from 'next/head'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { BackgroundsContext } from 'contexts/backgrounds'
-import { useState } from 'react'
-import '@fontsource/righteous/400.css' // Weight 500.
+import { BackgroundsProvider } from 'contexts/backgrounds'
+import '@fontsource/righteous/400.css'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-    const DEFAULT_BACKGROUNDS = ['rgb(202, 197, 49)', 'rgb(243, 249, 167)']
-    const [backgrounds, setBackgrounds] = useState(DEFAULT_BACKGROUNDS)
-
     return (
-        <BackgroundsContext.Provider value={{ backgrounds, setBackgrounds }}>
+        <BackgroundsProvider>
             <Tooltip.Provider skipDelayDuration={0}>
                 <Head>
                     <meta charSet="utf-8" />
@@ -27,7 +23,7 @@ function MyApp({ Component, pageProps }) {
                 </Head>
                 <Component {...pageProps} />
             </Tooltip.Provider>
-        </BackgroundsContext.Provider>
+        </BackgroundsProvider>
     )
 }
 

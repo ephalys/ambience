@@ -3,10 +3,12 @@ import { generateNewBackgroundsArray } from '@/utils/generateBackground'
 import { BackgroundsContext } from 'contexts/backgrounds'
 import { IoArrowForwardOutline, IoArrowBackOutline } from 'react-icons/io5'
 import { TbSpace } from 'react-icons/tb'
+import copy from 'copy-to-clipboard'
+import generateCSSGradient from '@/utils/generateCSSGradient'
 
 const CONTROLS = [
     {
-        text: 'Copy to clipboard',
+        text: 'Copy CSS to clipboard',
         shortcut: 'c',
     },
     {
@@ -24,13 +26,19 @@ const CONTROLS = [
 ]
 
 const Controls = () => {
-    const { backgrounds, setBackgrounds } = useContext(BackgroundsContext)
+    const {
+        backgroundsState: { backgrounds },
+        setNewBackgrounds,
+    } = useContext(BackgroundsContext)
 
     const pressSpace = useCallback((event) => {
         if (event.key === ' ') {
             const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
 
-            setBackgrounds(newBackgroundsArray)
+            setNewBackgrounds(newBackgroundsArray)
+        } else if (event.key === 'c') {
+            copy(generateCSSGradient(backgrounds))
+            alert('Copied')
         }
     }, [])
 

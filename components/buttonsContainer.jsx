@@ -3,14 +3,23 @@ import Button from '@/components/button'
 import { BackgroundsContext } from 'contexts/backgrounds'
 import { IoReload, IoCopy } from 'react-icons/io5'
 import { generateNewBackgroundsArray } from '@/utils/generateBackground'
+import copy from 'copy-to-clipboard'
+import generateCSSGradient from '@/utils/generateCSSGradient'
 
 const Actions = () => {
-    const { backgrounds, setBackgrounds } = useContext(BackgroundsContext)
+    const {
+        backgroundsState: { backgrounds },
+        setNewBackgrounds,
+    } = useContext(BackgroundsContext)
 
-    const handleGenerateClick = () => {
+    const handleGenerateButtonClick = () => {
         const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
+        setNewBackgrounds(newBackgroundsArray)
+    }
 
-        setBackgrounds(newBackgroundsArray)
+    const handleCopyButtonClick = () => {
+        copy(generateCSSGradient(backgrounds))
+        alert('Copied')
     }
 
     const buttons = [
@@ -18,12 +27,13 @@ const Actions = () => {
             id: 'generate',
             text: 'Generate new gradient',
             icon: <IoReload size={28} />,
-            action: handleGenerateClick,
+            action: handleGenerateButtonClick,
         },
         {
             id: 'copy',
-            text: 'Copy to clipboard',
+            text: 'Copy CSS to clipboard',
             icon: <IoCopy size={28} />,
+            action: handleCopyButtonClick,
         },
     ]
 
