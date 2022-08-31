@@ -5,6 +5,7 @@ import { generateNewBackgroundsArray } from '@/utils/generateBackground'
 import copy from 'copy-to-clipboard'
 import generateCSSGradient from '@/utils/generateCSSGradient'
 import useBackgrounds from 'hooks/useBackgrounds'
+import toast from 'react-hot-toast'
 
 const Actions = () => {
     const { backgrounds, setNewBackgrounds, backgroundIndexToShow } =
@@ -13,11 +14,12 @@ const Actions = () => {
     const handleGenerateButtonClick = () => {
         const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
         setNewBackgrounds(newBackgroundsArray)
+        toast('Generated')
     }
 
     const handleCopyButtonClick = () => {
         copy(generateCSSGradient(backgrounds[backgroundIndexToShow]))
-        alert('Copied')
+        toast('Copied')
     }
 
     const buttons = [

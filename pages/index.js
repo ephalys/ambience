@@ -7,6 +7,7 @@ import Controls from '@/components/controls'
 import Credits from '@/components/credits'
 import { BackgroundsContext } from '@/contexts/backgrounds'
 import generateCSSGradient from '@/utils/generateCSSGradient'
+import Toast from '@/components/toast'
 
 function Home() {
     const [renderMobileItems, setRenderMobileItems] = useState(false)
@@ -41,6 +42,7 @@ function Home() {
                     {!renderMobileItems && <Controls />}
                     <Credits />
                 </Div100vh>
+                <Toast />
             </main>
         </>
     )

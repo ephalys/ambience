@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { generateNewBackgroundsArray } from '@/utils/generateBackground'
 import generateCSSGradient from '@/utils/generateCSSGradient'
 import copy from 'copy-to-clipboard'
+import toast from 'react-hot-toast'
 
 export const useKeyDown = (context) => {
     const {
@@ -18,19 +19,20 @@ export const useKeyDown = (context) => {
                     generateNewBackgroundsArray(backgrounds)
 
                 setNewBackgrounds(newBackgroundsArray)
+                toast('Generated')
             } else if (e.key === 'c') {
-                copy(generateCSSGradient(backgrounds))
-                alert('Copied')
+                copy(generateCSSGradient(backgrounds[backgroundIndexToShow]))
+                toast('Copied')
             } else if (e.key === 'ArrowRight') {
-                const index =
-                    backgroundIndexToShow >= backgrounds.length - 1
-                        ? backgroundIndexToShow
-                        : backgroundIndexToShow + 1
-                setBackgroundIndexToShow(index)
+                if (backgroundIndexToShow < backgrounds.length - 1) {
+                    setBackgroundIndexToShow(backgroundIndexToShow + 1)
+                    toast('Next')
+                }
             } else if (e.key === 'ArrowLeft') {
-                const index =
-                    backgroundIndexToShow <= 0 ? 0 : backgroundIndexToShow - 1
-                setBackgroundIndexToShow(index)
+                if (!backgroundIndexToShow <= 0) {
+                    setBackgroundIndexToShow(backgroundIndexToShow - 1)
+                    toast('Previous')
+                }
             }
         }
 
