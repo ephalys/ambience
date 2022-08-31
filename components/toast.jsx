@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import toast, { Toaster, ToastIcon, resolveValue } from 'react-hot-toast'
+import toast, {
+    Toaster,
+    ToastIcon,
+    resolveValue,
+    useToasterStore,
+} from 'react-hot-toast'
+import { isMobile } from 'react-device-detect'
 
 const Toast = () => {
     const [showToast, setShowToast] = useState(false)
+    const { toasts } = useToasterStore()
+
+    const TOAST_LIMIT = isMobile ? 2 : 4
+
+    useEffect(() => {
+        toasts
+            .filter((t) => t.visible) // Only consider visible toasts
+            .filter((_, i) => i >= TOAST_LIMIT) // Is toast index over limit?
+            .forEach((t) => toast.dismiss(t.id)) // Dismiss – Use toast.remove(t.id) for no exit animation
+    }, [toasts, TOAST_LIMIT])
 
     useEffect(() => {
         if (!showToast) {
@@ -13,16 +29,24 @@ const Toast = () => {
         }
     }, [showToast])
 
+    const mobileOptions = {
+        duration: 500,
+        position: 'bottom-center',
+        icon: '✅',
+    }
+
+    const desktopOptions = {
+        duration: 800,
+        position: 'top-right',
+        icon: '✅',
+    }
+
     return (
         <>
             {showToast && (
                 <Toaster
-                    containerClassName="!inset-y-8"
-                    toastOptions={{
-                        duration: 1000,
-                        position: 'top-right',
-                        icon: '✅',
-                    }}
+                    containerClassName=" !inset-y-16 sm:!inset-y-8"
+                    toastOptions={isMobile ? mobileOptions : desktopOptions}
                 >
                     {(t) => {
                         console.log(t)
