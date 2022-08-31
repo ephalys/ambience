@@ -45,25 +45,20 @@ const Toast = () => {
         <>
             {showToast && (
                 <Toaster
-                    containerClassName=" !inset-y-16 sm:!inset-y-8"
+                    containerClassName=" !bottom-1/2 sm:!inset-y-8"
                     toastOptions={isMobile ? mobileOptions : desktopOptions}
                 >
-                    {(t) => {
-                        console.log(t)
-                        return (
-                            <span
-                                className="flex py-2 px-4 text-white bg-black rounded-full shadow-lg transition-opacity duration-300"
-                                style={{
-                                    opacity: t.visible ? 1 : 0,
-                                }}
-                            >
-                                <ToastIcon toast={t} />
-                                <p className="px-2">
-                                    {resolveValue(t.message)}
-                                </p>
-                            </span>
-                        )
-                    }}
+                    {(t) => (
+                        <span
+                            className="flex py-2 px-4 text-white bg-black rounded-full shadow-lg transition-opacity duration-300"
+                            style={{
+                                opacity: t.visible ? 1 : 0,
+                            }}
+                        >
+                            <ToastIcon toast={t} />
+                            <p className="px-2">{resolveValue(t.message)}</p>
+                        </span>
+                    )}
                 </Toaster>
             )}
         </>

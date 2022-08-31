@@ -10,7 +10,7 @@ import generateCSSGradient from '@/utils/generateCSSGradient'
 import Toast from '@/components/toast'
 
 function Home() {
-    const [renderMobileItems, setRenderMobileItems] = useState(false)
+    const [renderMobileItems, setRenderMobileItems] = useState(true)
     const { backgrounds, backgroundIndexToShow } =
         useContext(BackgroundsContext)
 
