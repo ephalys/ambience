@@ -6,10 +6,8 @@ import '@fontsource/righteous/400.css' // Weight 500.
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-    const [backgrounds, setBackgrounds] = useState([
-        'rgb(12, 120, 176)',
-        'rgb(200, 120, 116)',
-    ])
+    const DEFAULT_BACKGROUNDS = ['rgb(202, 197, 49)', 'rgb(243, 249, 167)']
+    const [backgrounds, setBackgrounds] = useState(DEFAULT_BACKGROUNDS)
 
     return (
         <BackgroundsContext.Provider value={{ backgrounds, setBackgrounds }}>
