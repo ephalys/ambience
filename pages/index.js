@@ -11,10 +11,10 @@ import { getLastItemArray } from '@/utils/getLastItemArray'
 
 function Home() {
     const {
-        backgroundsState: { backgrounds },
+        backgroundsState: { backgrounds, index },
     } = useContext(BackgroundsContext)
     const mainGradientStyle = {
-        background: generateCSSGradient(getLastItemArray(backgrounds)),
+        background: generateCSSGradient(backgrounds[index]),
     }
 
     return (

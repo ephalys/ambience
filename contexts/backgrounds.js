@@ -12,10 +12,10 @@ export const BackgroundsProvider = ({ children, backgrounds }) => {
 
     const setNewBackgrounds = (values) => {
         const previousBackgrounds = backgroundsList.backgrounds
-        const newIndex = backgroundsList.index++
+        const index = backgroundsList.index + 1
         setNewBackgroundsList({
             backgrounds: [...previousBackgrounds, values],
-            newIndex,
+            index,
         })
     }
 

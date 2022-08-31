@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect, useContext } from 'react'
-import { generateNewBackgroundsArray } from '@/utils/generateBackground'
+import React, { useEffect, useContext } from 'react'
 import { BackgroundsContext } from 'contexts/backgrounds'
 import { IoArrowForwardOutline, IoArrowBackOutline } from 'react-icons/io5'
 import { TbSpace } from 'react-icons/tb'
-import copy from 'copy-to-clipboard'
-import generateCSSGradient from '@/utils/generateCSSGradient'
+import { handleKeyPress } from '@/utils/handleKeyPress'
 
 const CONTROLS = [
     {
@@ -31,22 +29,15 @@ const Controls = () => {
         setNewBackgrounds,
     } = useContext(BackgroundsContext)
 
-    const pressSpace = useCallback((event) => {
-        if (event.key === ' ') {
-            const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
-
-            setNewBackgrounds(newBackgroundsArray)
-        } else if (event.key === 'c') {
-            copy(generateCSSGradient(backgrounds))
-            alert('Copied')
-        }
-    }, [])
-
     useEffect(() => {
-        document.addEventListener('keydown', pressSpace, false)
+        document.addEventListener(
+            'keydown',
+            (e) => handleKeyPress(e, backgrounds, setNewBackgrounds),
+            false
+        )
 
         return () => {
-            document.removeEventListener('keydown', pressSpace, false)
+            document.removeEventListener('keydown', handleKeyPress, false)
         }
     }, [])
 
