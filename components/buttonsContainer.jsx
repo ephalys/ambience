@@ -7,7 +7,8 @@ import generateCSSGradient from '@/utils/generateCSSGradient'
 import useBackgrounds from 'hooks/useBackgrounds'
 
 const Actions = () => {
-    const { backgrounds, setNewBackgrounds } = useBackgrounds()
+    const { backgrounds, setNewBackgrounds, backgroundIndexToShow } =
+        useBackgrounds()
 
     const handleGenerateButtonClick = () => {
         const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
@@ -15,7 +16,7 @@ const Actions = () => {
     }
 
     const handleCopyButtonClick = () => {
-        copy(generateCSSGradient(backgrounds))
+        copy(generateCSSGradient(backgrounds[backgroundIndexToShow]))
         alert('Copied')
     }
 
