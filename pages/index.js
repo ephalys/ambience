@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Div100vh from 'react-div-100vh'
 import { isMobile } from 'react-device-detect'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import ButtonsContainer from '@/components/buttonsContainer'
 import Controls from '@/components/controls'
 import Credits from '@/components/credits'
@@ -9,12 +9,17 @@ import { BackgroundsContext } from '@/contexts/backgrounds'
 import generateCSSGradient from '@/utils/generateCSSGradient'
 
 function Home() {
+    const [renderMobileItems, setRenderMobileItems] = useState(false)
     const { backgrounds, backgroundIndexToShow } =
         useContext(BackgroundsContext)
 
     const mainGradientStyle = {
         background: generateCSSGradient(backgrounds[backgroundIndexToShow]),
     }
+
+    useEffect(() => {
+        setRenderMobileItems(isMobile)
+    }, [])
 
     return (
         <>
@@ -33,7 +38,7 @@ function Home() {
                         Ambience
                     </h1>
                     <ButtonsContainer />
-                    {!isMobile && <Controls />}
+                    {!renderMobileItems && <Controls />}
                     <Credits />
                 </Div100vh>
             </main>
