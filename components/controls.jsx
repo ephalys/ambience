@@ -1,26 +1,32 @@
 import React from 'react'
 import { IoArrowForwardOutline, IoArrowBackOutline } from 'react-icons/io5'
 import { TbSpace } from 'react-icons/tb'
+import useBackgrounds from 'hooks/useBackgrounds'
+import { useKeyDown } from 'hooks/useKeyDown'
+
+const CONTROLS = [
+    {
+        text: 'Copy CSS to clipboard',
+        shortcut: 'c',
+    },
+    {
+        text: 'Generate new Gradient',
+        shortcut: <TbSpace />,
+    },
+    {
+        text: 'Navigate',
+        shortcut: (
+            <>
+                <IoArrowBackOutline /> <IoArrowForwardOutline />
+            </>
+        ),
+    },
+]
 
 const Controls = () => {
-    const CONTROLS = [
-        {
-            text: 'Copy to clipboard',
-            shortcut: 'c',
-        },
-        {
-            text: 'Generate new Gradient',
-            shortcut: <TbSpace />,
-        },
-        {
-            text: 'Navigate',
-            shortcut: (
-                <>
-                    <IoArrowBackOutline /> <IoArrowForwardOutline />
-                </>
-            ),
-        },
-    ]
+    const context = useBackgrounds()
+    useKeyDown(context)
+
     return (
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex justify-center mt-6 gap-6 w-full">
             {CONTROLS &&
