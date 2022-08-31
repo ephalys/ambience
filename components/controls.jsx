@@ -1,8 +1,8 @@
-import React, { useEffect, useContext } from 'react'
-import { BackgroundsContext } from 'contexts/backgrounds'
+import React from 'react'
 import { IoArrowForwardOutline, IoArrowBackOutline } from 'react-icons/io5'
 import { TbSpace } from 'react-icons/tb'
-import { handleKeyPress } from '@/utils/handleKeyPress'
+import useBackgrounds from 'hooks/useBackgrounds'
+import { useKeyDown } from 'hooks/useKeyDown'
 
 const CONTROLS = [
     {
@@ -24,22 +24,8 @@ const CONTROLS = [
 ]
 
 const Controls = () => {
-    const {
-        backgroundsState: { backgrounds },
-        setNewBackgrounds,
-    } = useContext(BackgroundsContext)
-
-    useEffect(() => {
-        document.addEventListener(
-            'keydown',
-            (e) => handleKeyPress(e, backgrounds, setNewBackgrounds),
-            false
-        )
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyPress, false)
-        }
-    }, [])
+    const context = useBackgrounds()
+    useKeyDown(context)
 
     return (
         <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex justify-center mt-6 gap-6 w-full">

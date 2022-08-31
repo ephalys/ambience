@@ -1,7 +1,7 @@
 import React from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 
-const Button = ({ children, text, action, ...rest }) => {
+const Button = ({ children, text, ...rest }) => {
     return (
         <Tooltip.Root delayDuration={800}>
             <Tooltip.Trigger asChild>

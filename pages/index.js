@@ -7,14 +7,13 @@ import Controls from '@/components/controls'
 import Credits from '@/components/credits'
 import { BackgroundsContext } from '@/contexts/backgrounds'
 import generateCSSGradient from '@/utils/generateCSSGradient'
-import { getLastItemArray } from '@/utils/getLastItemArray'
 
 function Home() {
-    const {
-        backgroundsState: { backgrounds, index },
-    } = useContext(BackgroundsContext)
+    const { backgrounds, backgroundIndexToShow } =
+        useContext(BackgroundsContext)
+
     const mainGradientStyle = {
-        background: generateCSSGradient(backgrounds[index]),
+        background: generateCSSGradient(backgrounds[backgroundIndexToShow]),
     }
 
     return (

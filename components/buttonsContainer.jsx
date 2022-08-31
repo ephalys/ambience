@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Button from '@/components/button'
-import { BackgroundsContext } from 'contexts/backgrounds'
 import { IoReload, IoCopy } from 'react-icons/io5'
 import { generateNewBackgroundsArray } from '@/utils/generateBackground'
 import copy from 'copy-to-clipboard'
 import generateCSSGradient from '@/utils/generateCSSGradient'
+import useBackgrounds from 'hooks/useBackgrounds'
 
 const Actions = () => {
-    const {
-        backgroundsState: { backgrounds },
-        setNewBackgrounds,
-    } = useContext(BackgroundsContext)
+    const { backgrounds, setNewBackgrounds } = useBackgrounds()
 
     const handleGenerateButtonClick = () => {
         const newBackgroundsArray = generateNewBackgroundsArray(backgrounds)
