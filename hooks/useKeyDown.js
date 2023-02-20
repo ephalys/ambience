@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
-import { generateNewBackgroundsArray } from '@/utils/generateBackground'
-import generateCSSGradient from '@/utils/generateCSSGradient'
-import copy from 'copy-to-clipboard'
-import toast from 'react-hot-toast'
+import { useEffect } from 'react';
+import { generateNewBackgroundsArray } from '@/utils/generateBackground';
+import generateCSSGradient from '@/utils/generateCSSGradient';
+import copy from 'copy-to-clipboard';
+import toast from 'react-hot-toast';
 
 export const useKeyDown = (context) => {
     const {
@@ -10,41 +10,44 @@ export const useKeyDown = (context) => {
         setNewBackgrounds,
         backgroundIndexToShow,
         setBackgroundIndexToShow,
-    } = context
+    } = context;
 
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.key === ' ') {
                 const newBackgroundsArray =
-                    generateNewBackgroundsArray(backgrounds)
+                    generateNewBackgroundsArray(backgrounds);
 
-                setNewBackgrounds(newBackgroundsArray)
-                toast('Generated')
+                setNewBackgrounds(newBackgroundsArray);
+                toast(['Generated', 'Some colors']);
             } else if (e.key === 'c') {
-                copy(generateCSSGradient(backgrounds[backgroundIndexToShow]))
-                toast('Copied')
+                const generatedCSSGradient = generateCSSGradient(
+                    backgrounds[backgroundIndexToShow]
+                );
+                copy(generatedCSSGradient);
+                toast(['Copied', generatedCSSGradient]);
             } else if (e.key === 'ArrowRight') {
                 if (backgroundIndexToShow < backgrounds.length - 1) {
-                    setBackgroundIndexToShow(backgroundIndexToShow + 1)
-                    toast('Next')
+                    setBackgroundIndexToShow(backgroundIndexToShow + 1);
+                    toast('Next');
                 }
             } else if (e.key === 'ArrowLeft') {
                 if (!backgroundIndexToShow <= 0) {
-                    setBackgroundIndexToShow(backgroundIndexToShow - 1)
-                    toast('Previous')
+                    setBackgroundIndexToShow(backgroundIndexToShow - 1);
+                    toast('Previous');
                 }
             }
-        }
+        };
 
-        document.addEventListener('keydown', handleKeyPress, false)
+        document.addEventListener('keydown', handleKeyPress, false);
 
         return () => {
-            document.removeEventListener('keydown', handleKeyPress, false)
-        }
+            document.removeEventListener('keydown', handleKeyPress, false);
+        };
     }, [
         backgroundIndexToShow,
         backgrounds,
         setBackgroundIndexToShow,
         setNewBackgrounds,
-    ])
-}
+    ]);
+};
