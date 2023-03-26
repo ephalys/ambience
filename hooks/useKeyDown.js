@@ -5,25 +5,17 @@ import copy from 'copy-to-clipboard';
 import toast from 'react-hot-toast';
 
 export const useKeyDown = (context) => {
-    const {
-        backgrounds,
-        setNewBackgrounds,
-        backgroundIndexToShow,
-        setBackgroundIndexToShow,
-    } = context;
+    const { backgrounds, setNewBackgrounds, backgroundIndexToShow, setBackgroundIndexToShow } = context;
 
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.key === ' ') {
-                const newBackgroundsArray =
-                    generateNewBackgroundsArray(backgrounds);
+                const newBackgroundsArray = generateNewBackgroundsArray(backgrounds);
 
                 setNewBackgrounds(newBackgroundsArray);
                 toast(['Generated', 'Some colors']);
             } else if (e.key === 'c') {
-                const generatedCSSGradient = generateCSSGradient(
-                    backgrounds[backgroundIndexToShow]
-                );
+                const generatedCSSGradient = generateCSSGradient(backgrounds[backgroundIndexToShow]);
                 copy(generatedCSSGradient);
                 toast(['Copied', generatedCSSGradient]);
             } else if (e.key === 'ArrowRight') {
@@ -44,10 +36,5 @@ export const useKeyDown = (context) => {
         return () => {
             document.removeEventListener('keydown', handleKeyPress, false);
         };
-    }, [
-        backgroundIndexToShow,
-        backgrounds,
-        setBackgroundIndexToShow,
-        setNewBackgrounds,
-    ]);
+    }, [backgroundIndexToShow, backgrounds, setBackgroundIndexToShow, setNewBackgrounds]);
 };

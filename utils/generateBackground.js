@@ -1,20 +1,20 @@
-import { getLastItemArray } from '@/utils/getLastItemArray'
+import { getLastItemArray } from '@/utils/getLastItemArray';
 
-const generateRandomNumber = () => {
-    return ~~(Math.random() * (255 + 1))
-}
+const getRandomNumber = () => {
+    return ~~(Math.random() * (255 + 1));
+};
 
-const generateRgb = () => {
-    return `rgb(${generateRandomNumber()}, ${generateRandomNumber()}, ${generateRandomNumber()})`
-}
+const generateRgbColor = () => {
+    return `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+};
 
 export const generateNewBackgroundsArray = (backgrounds) => {
-    const lastGradientLength = getLastItemArray(backgrounds).length
-    let newBackgrounds = []
+    const lastGradientLength = getLastItemArray(backgrounds).length;
+    let newBackground = [];
 
     for (let i = 0; i < lastGradientLength; i++) {
-        newBackgrounds.push(generateRgb())
+        newBackground.push(generateRgbColor());
     }
 
-    return newBackgrounds
-}
+    return newBackground;
+};
